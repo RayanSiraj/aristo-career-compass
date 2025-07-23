@@ -36,6 +36,31 @@ export function CareerDashboard({ quizResult }: CareerDashboardProps) {
   const [showPersonalityMatches, setShowPersonalityMatches] = useState(false);
   const { toast } = useToast();
 
+  const getCategoryColor = (category: string) => {
+    const colors: Record<string, string> = {
+      'Technology': 'bg-blue-100 text-blue-700 border-blue-200',
+      'Healthcare': 'bg-green-100 text-green-700 border-green-200',
+      'Engineering': 'bg-purple-100 text-purple-700 border-purple-200',
+      'Arts & Design': 'bg-pink-100 text-pink-700 border-pink-200',
+      'Business': 'bg-orange-100 text-orange-700 border-orange-200',
+      'Science': 'bg-teal-100 text-teal-700 border-teal-200',
+      'Finance': 'bg-emerald-100 text-emerald-700 border-emerald-200',
+      'Education': 'bg-yellow-100 text-yellow-700 border-yellow-200',
+      'Media & Communications': 'bg-indigo-100 text-indigo-700 border-indigo-200',
+    };
+    return colors[category] || 'bg-gray-100 text-gray-700 border-gray-200';
+  };
+
+  const getDemandColorClasses = (demand: string) => {
+    const colors: Record<string, string> = {
+      'Very High': 'bg-red-100 text-red-700 border-red-200',
+      'High': 'bg-orange-100 text-orange-700 border-orange-200',
+      'Medium': 'bg-yellow-100 text-yellow-700 border-yellow-200',
+      'Low': 'bg-gray-100 text-gray-700 border-gray-200',
+    };
+    return colors[demand] || 'bg-gray-100 text-gray-700 border-gray-200';
+  };
+
   const personalityTrait = quizResult ? getPersonalityTrait(quizResult.personalityType) : null;
 
   const filteredAndSortedCareers = useMemo(() => {
@@ -249,7 +274,10 @@ export function CareerDashboard({ quizResult }: CareerDashboardProps) {
                 <div className="flex items-start justify-between">
                   <div className="space-y-1">
                     <CardTitle className="text-lg leading-tight">{career.title}</CardTitle>
-                    <Badge variant="secondary" className="text-xs">
+                    <Badge 
+                      variant="secondary" 
+                      className={`text-xs ${getCategoryColor(career.category)}`}
+                    >
                       {career.category}
                     </Badge>
                   </div>
@@ -281,7 +309,9 @@ export function CareerDashboard({ quizResult }: CareerDashboardProps) {
 
                 <div className="space-y-2">
                   <div className="flex items-center gap-2 text-sm">
-                    <Badge variant={getDemandBadgeVariant(career.demand)} className="text-xs">
+                    <Badge 
+                      className={`text-xs font-medium ${getDemandColorClasses(career.demand)}`}
+                    >
                       {career.demand} Demand
                     </Badge>
                     {career.remote && (
