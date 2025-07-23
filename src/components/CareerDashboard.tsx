@@ -114,43 +114,59 @@ export function CareerDashboard({ quizResult }: CareerDashboardProps) {
 
       {/* Stats Cards */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <Card>
-          <CardContent className="p-4 text-center">
-            <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary/10 mx-auto mb-2">
-              <Target className="h-5 w-5 text-primary" />
+        <Card className="bg-white border-0 shadow-sm">
+          <CardContent className="p-6">
+            <div className="space-y-3">
+              <div className="w-12 h-12 bg-blue-500 rounded-2xl flex items-center justify-center">
+                <Target className="h-6 w-6 text-white" />
+              </div>
+              <div>
+                <div className="text-3xl font-bold text-gray-900">{stats.totalCareers}</div>
+                <div className="text-sm text-gray-500">Total Careers</div>
+              </div>
             </div>
-            <div className="text-2xl font-bold">{stats.totalCareers}</div>
-            <div className="text-sm text-muted-foreground">Total Careers</div>
           </CardContent>
         </Card>
         
-        <Card>
-          <CardContent className="p-4 text-center">
-            <div className="flex items-center justify-center w-10 h-10 rounded-full bg-success/10 mx-auto mb-2">
-              <TrendingUp className="h-5 w-5 text-success" />
+        <Card className="bg-white border-0 shadow-sm">
+          <CardContent className="p-6">
+            <div className="space-y-3">
+              <div className="w-12 h-12 bg-green-500 rounded-2xl flex items-center justify-center">
+                <TrendingUp className="h-6 w-6 text-white" />
+              </div>
+              <div>
+                <div className="text-3xl font-bold text-gray-900">{stats.highDemand}</div>
+                <div className="text-sm text-gray-500">High Demand</div>
+              </div>
             </div>
-            <div className="text-2xl font-bold">{stats.highDemand}</div>
-            <div className="text-sm text-muted-foreground">High Demand</div>
           </CardContent>
         </Card>
         
-        <Card>
-          <CardContent className="p-4 text-center">
-            <div className="flex items-center justify-center w-10 h-10 rounded-full bg-info/10 mx-auto mb-2">
-              <Globe className="h-5 w-5 text-info" />
+        <Card className="bg-white border-0 shadow-sm">
+          <CardContent className="p-6">
+            <div className="space-y-3">
+              <div className="w-12 h-12 bg-purple-500 rounded-2xl flex items-center justify-center">
+                <Globe className="h-6 w-6 text-white" />
+              </div>
+              <div>
+                <div className="text-3xl font-bold text-gray-900">{stats.remoteAvailable}</div>
+                <div className="text-sm text-gray-500">Remote Available</div>
+              </div>
             </div>
-            <div className="text-2xl font-bold">{stats.remoteAvailable}</div>
-            <div className="text-sm text-muted-foreground">Remote Available</div>
           </CardContent>
         </Card>
         
-        <Card>
-          <CardContent className="p-4 text-center">
-            <div className="flex items-center justify-center w-10 h-10 rounded-full bg-warning/10 mx-auto mb-2">
-              <Zap className="h-5 w-5 text-warning" />
+        <Card className="bg-white border-0 shadow-sm">
+          <CardContent className="p-6">
+            <div className="space-y-3">
+              <div className="w-12 h-12 bg-orange-500 rounded-2xl flex items-center justify-center">
+                <Zap className="h-6 w-6 text-white" />
+              </div>
+              <div>
+                <div className="text-3xl font-bold text-gray-900">+{stats.avgGrowth}%</div>
+                <div className="text-sm text-gray-500">Avg Growth</div>
+              </div>
             </div>
-            <div className="text-2xl font-bold">{stats.avgGrowth}</div>
-            <div className="text-sm text-muted-foreground">Avg Growth</div>
           </CardContent>
         </Card>
       </div>
@@ -159,13 +175,16 @@ export function CareerDashboard({ quizResult }: CareerDashboardProps) {
       <div className="space-y-4">
         <div className="flex flex-col sm:flex-row gap-4">
           <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
             <Input
               placeholder="Search your dream career..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10"
+              className="pl-12 pr-12 py-3 rounded-xl border-gray-200 bg-white text-base placeholder:text-gray-400 focus:border-blue-500 focus:ring-blue-500"
             />
+            <div className="absolute right-4 top-1/2 transform -translate-y-1/2">
+              <Zap className="h-5 w-5 text-blue-500" />
+            </div>
           </div>
           <Button
             variant="outline"
